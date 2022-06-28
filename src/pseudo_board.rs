@@ -130,9 +130,9 @@ impl PseudoBoard {
 
             if is_point_chain {
                 check_multi_dead_chains = true;
-            } else {
-                check_capture = true;
             }
+
+            check_capture = true;
         }
 
         let mut dead = vec![];
@@ -152,7 +152,7 @@ impl PseudoBoard {
             }
         }
 
-        if check_multi_dead_chains && dead_chains <= 1
+        if check_multi_dead_chains && dead_chains <= 1 && dead.len() == 1
         || check_capture && dead.len() == 0 {
             for &d in &dead {
                 self.set(d, -sign);
